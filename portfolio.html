@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Muhammad Sohail — Full-Stack Django Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#262624; --blue:#D97757; --light-blue:#F5EDE4; --white:#FFFFFF;
+  --bg:#F5F4EE; --slate:#6B6459; --dark:#262624;
+  --radius:14px; --border:#E5E1D8; --shadow:0 1px 2px rgba(15,39,66,.04),0 8px 24px rgba(15,39,66,.06);
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html,body{overflow-x:hidden; width:100%;}
+html{scroll-behavior:smooth; scroll-padding-top:70px;}
+body{font-family:'Inter',sans-serif; color:var(--dark); background:var(--bg); line-height:1.6; -webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Manrope',sans-serif; color:var(--navy); letter-spacing:-0.01em;}
+img,svg{max-width:100%; display:block;}
+.container{max-width:1160px; margin:0 auto; padding:0 clamp(20px,5vw,32px);}
+a{color:inherit; text-decoration:none;}
+.section{padding:clamp(56px,9vw,96px) 0;}
+.section-head{max-width:620px; margin-bottom:clamp(32px,5vw,48px);}
+.eyebrow{color:var(--blue); font-weight:600; font-size:14px; margin-bottom:10px;}
+.section-head h2{font-size:clamp(26px,4vw,34px); margin-bottom:12px;}
+.section-head p{color:var(--slate); font-size:16px;}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:13px 26px; border-radius:10px; font-weight:600; font-size:15px; cursor:pointer; border:1px solid transparent;}
+.btn-primary{background:var(--blue); color:#fff;}
+.btn-primary:hover{background:#BE6548;}
+.btn-outline{background:#fff; color:var(--navy); border-color:var(--border);}
+.btn-outline:hover{border-color:var(--blue); color:var(--blue);}
+.card{background:#fff; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow);}
+
+/* HEADER */
+header{background:var(--navy); position:sticky; top:0; z-index:50;}
+.nav{display:flex; align-items:center; justify-content:space-between; height:72px; gap:12px;}
+.brand{display:flex; align-items:center; gap:10px; font-weight:700; color:#fff; font-size:16px; min-width:0; overflow:hidden;}
+.brand-icon{width:34px; height:34px; border-radius:9px; background:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.brand span{white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.nav-links{display:flex; gap:34px; list-style:none;}
+.nav-links a{color:#C2BCAE; font-size:14.5px; font-weight:500; padding-bottom:24px; border-bottom:2px solid transparent;}
+.nav-links a.active{color:#fff; border-color:var(--blue);}
+.nav-links a:hover{color:#fff;}
+.nav-icons{display:flex; align-items:center; gap:16px; flex-shrink:0;}
+.nav-social{display:flex; align-items:center; gap:16px;}
+.nav-icons a{color:#C2BCAE;}
+.nav-icons a:hover{color:#fff;}
+.nav-toggle{display:none; background:none; border:none; padding:6px; cursor:pointer; color:#fff; flex-shrink:0;}
+.mobile-menu{display:none; flex-direction:column; background:var(--navy); border-top:1px solid rgba(255,255,255,.1); padding:8px 0 18px;}
+.mobile-menu a{color:#C2BCAE; font-size:15px; font-weight:500; padding:12px 32px;}
+.mobile-menu a.active{color:#fff;}
+.mobile-menu.open{display:flex;}
+.mobile-menu-social{display:flex; gap:18px; padding:14px 32px 0; margin-top:6px; border-top:1px solid rgba(255,255,255,.08);}
+.mobile-menu-social a{color:#C2BCAE; padding:12px 0 0;}
+@media (max-width:860px){
+  .nav-links{display:none;}
+  .nav-toggle{display:block;}
+}
+@media (max-width:480px){
+  .nav-social{display:none;}
+  .brand{font-size:13.5px; gap:8px;}
+  .brand-icon{width:30px; height:30px;}
+}
+
+/* HERO */
+.hero{padding:clamp(56px,10vw,100px) 0 clamp(48px,8vw,90px);}
+.hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:64px; align-items:center;}
+.hero h1{font-size:clamp(32px,6vw,50px); line-height:1.1; margin:14px 0 10px;}
+.hero h1 span{color:var(--blue);}
+.hero .role{font-size:21px; color:var(--slate); font-weight:600; margin-bottom:18px;}
+.hero p.desc{color:var(--slate); font-size:16.5px; max-width:520px; margin-bottom:30px;}
+.hero-ctas{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:22px;}
+.hero-secondary{margin-bottom:34px;}
+.hero-secondary a{color:var(--blue); font-weight:600; font-size:14.5px;}
+.hero-meta{display:flex; flex-direction:column; gap:10px; font-size:14.5px; color:var(--slate);}
+.hero-meta b{color:var(--dark); font-weight:600;}
+.portrait-wrap{position:relative;}
+.portrait-bg{position:absolute; inset:-24px; z-index:0;}
+.portrait-frame{position:relative; z-index:1; border-radius:20px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); background:var(--light-blue);}
+.badge{position:absolute; bottom:-18px; left:24px; z-index:2; background:#fff; border:1px solid var(--border); box-shadow:var(--shadow); border-radius:10px; padding:10px 18px; font-size:13.5px; font-weight:600; color:var(--navy);}
+
+/* ABOUT */
+.about-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start;}
+.about-grid p{color:var(--slate); font-size:16px; margin-bottom:24px;}
+.stat-row{display:flex; flex-wrap:wrap; gap:14px 28px; margin-top:24px;}
+.stat{font-size:13.5px; color:var(--slate); font-weight:600;}
+.approach-card{padding:32px;}
+.approach-card h3{font-size:19px; margin-bottom:18px;}
+.approach-card ul{list-style:none;}
+.approach-card li{display:flex; gap:10px; align-items:flex-start; padding:9px 0; font-size:15px; color:var(--dark); border-bottom:1px solid #EDE9DF;}
+.approach-card li:last-child{border:none;}
+.dot{width:6px; height:6px; border-radius:50%; background:var(--blue); margin-top:8px; flex-shrink:0;}
+
+/* GRID CARDS */
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+.grid-4{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+.grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:28px;}
+.edu-card,.build-card{padding:30px;}
+.icon-tile{width:44px; height:44px; border-radius:10px; background:var(--light-blue); display:flex; align-items:center; justify-content:center; margin-bottom:18px;}
+.edu-card h3{font-size:17px; margin-bottom:4px;}
+.edu-card .sub{color:var(--slate); font-size:14px; margin-bottom:14px;}
+.status{display:inline-block; font-size:12.5px; font-weight:600; padding:4px 10px; border-radius:20px;}
+.status.done{background:#ECFDF5; color:#047857;}
+.status.progress{background:var(--light-blue); color:var(--blue);}
+.build-card h3{font-size:17px; margin-bottom:8px;}
+.build-card p{color:var(--slate); font-size:14.5px;}
+
+/* SKILLS */
+.skill-cat{margin-bottom:36px;}
+.skill-cat h3{font-size:14px; color:var(--slate); font-weight:700; letter-spacing:.03em; margin-bottom:16px;}
+.skill-chips{display:flex; flex-wrap:wrap; gap:12px;}
+.chip{display:flex; align-items:center; gap:9px; padding:10px 16px; background:#fff; border:1px solid var(--border); border-radius:10px; font-size:14px; font-weight:600; color:var(--dark);}
+.chip .dot2{width:8px; height:8px; border-radius:2px; background:var(--blue);}
+.soft-row{display:flex; flex-wrap:wrap; gap:12px;}
+.soft-chip{padding:10px 16px; background:var(--light-blue); color:var(--navy); border-radius:20px; font-size:13.5px; font-weight:600;}
+
+/* PROJECTS */
+.proj-top{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:44px; flex-wrap:wrap; gap:16px;}
+.proj-top .btn-outline{font-size:14px; padding:10px 18px;}
+.proj-card{overflow:hidden;}
+.proj-shot{height:170px; background:linear-gradient(135deg,var(--light-blue),#fff); border-bottom:1px solid var(--border); position:relative;}
+.proj-body{padding:26px;}
+.proj-body h3{font-size:18px; margin-bottom:8px;}
+.proj-body p{color:var(--slate); font-size:14.5px; margin-bottom:16px;}
+.tech-row{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px;}
+.tech-badge{font-size:12px; font-weight:600; padding:4px 10px; background:var(--light-blue); color:var(--blue); border-radius:6px;}
+.proj-actions{display:flex; align-items:center; justify-content:space-between;}
+.proj-actions a.view{color:var(--blue); font-weight:600; font-size:14px;}
+.proj-actions .gh{color:var(--slate);}
+
+/* CONTACT */
+.contact{background:var(--navy); border-radius:24px; padding:64px 56px; text-align:center; margin:0 32px;}
+.contact h2{color:#fff; font-size:32px; margin-bottom:14px;}
+.contact p{color:#A39C8F; max-width:520px; margin:0 auto 40px; font-size:16px;}
+.contact-cards{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; max-width:720px; margin:0 auto 36px;}
+.contact-card{background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:22px; color:#fff;}
+.contact-card .label{color:#A39C8F; font-size:12.5px; margin-bottom:6px;}
+.contact-card .val{font-size:14px; font-weight:600; word-break:break-word;}
+
+/* FOOTER */
+footer{background:var(--navy); color:#A39C8F; padding:56px 0 28px; margin-top:96px;}
+.footer-grid{display:flex; justify-content:space-between; gap:48px; flex-wrap:wrap; margin-bottom:36px;}
+.footer-brand .brand{margin-bottom:14px;}
+.footer-brand p{font-size:14px; max-width:300px; color:#A39C8F;}
+.footer-brand .role{color:#fff; font-weight:600; font-size:14.5px; margin-bottom:6px;}
+.footer-links h4{color:#fff; font-size:14px; margin-bottom:16px;}
+.footer-links ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
+.footer-links a{color:#A39C8F; font-size:14px;}
+.footer-links a:hover{color:#fff;}
+.footer-social{display:flex; gap:16px; margin-top:16px;}
+.footer-social a{color:#A39C8F;}
+.footer-social a:hover{color:#fff;}
+.tagline{color:#fff; font-weight:600; font-size:14px; letter-spacing:.02em;}
+.divider{border-top:1px solid rgba(255,255,255,.1); padding-top:22px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:13px; color:#8C8577;}
+
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr; gap:44px;}
+  .portrait-wrap{max-width:340px; margin:0 auto;}
+  .about-grid{grid-template-columns:1fr;} .grid-4{grid-template-columns:repeat(2,1fr);}
+  .grid-3{grid-template-columns:1fr;} .grid-2{grid-template-columns:1fr;}
+  .contact{padding:44px 24px; margin:0 20px;} .contact-cards{grid-template-columns:1fr;}
+  .proj-top{align-items:flex-start;}
+}
+@media (max-width:640px){
+  .nav{height:64px;}
+  .brand{font-size:14.5px;}
+  .hero{padding-top:40px;}
+  .hero-ctas{flex-direction:column; align-items:stretch;}
+  .hero-ctas .btn{justify-content:center;}
+  .hero-meta{font-size:13.5px;}
+  .grid-4{grid-template-columns:1fr;}
+  .contact-cards{gap:12px;}
+  .contact h2{font-size:26px;}
+  .footer-grid{gap:32px;}
+  .divider{flex-direction:column; align-items:flex-start; gap:6px;}
+}
+@media (max-width:420px){
+  .badge{left:12px; padding:8px 14px; font-size:12px;}
+  .btn{width:100%; justify-content:center;}
+  .hero-secondary{margin-bottom:26px;}
+  .section-head p{font-size:14.5px;}
+  .proj-body{padding:20px;}
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){--bg:#1A1915; --dark:#E5E1D8; --slate:#A39C8F; --border:#332F27; --white:#211F1A;} body{background:var(--bg);} .card,.chip,.edu-card,.build-card,.approach-card{background:#211F1A;} h1,h2,h3,h4{color:#fff;} .proj-shot{background:linear-gradient(135deg,#2A2822,#211F1A);} }
+</style>
+</head>
+<body>
+
+<header style="background-color: #43637E;">
+  <div class="container nav">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 6L3 12L8 18M16 6L21 12L16 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span>Muhammad Sohail</span>
+    </div>
+    <ul class="nav-links" >
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-icons">
+      <span class="nav-social">
+        <a href="https://github.com/sohailkhansohail6300-bit" aria-label="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.88-2.78.62-3.37-1.22-3.37-1.22-.45-1.17-1.11-1.48-1.11-1.48-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg></a>
+        <a href="https://www.linkedin.com/in/mohammad-sohail-5a73463a2?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4-.02 2 2 0 0 1 4 .02ZM3.3 8.5h3.7V21H3.3V8.5Zm6.6 0h3.55v1.7h.05c.5-.9 1.7-1.86 3.5-1.86 3.75 0 4.44 2.3 4.44 5.3V21h-3.7v-5.6c0-1.34-.02-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95V21H9.9V8.5Z"/></svg></a>
+      </span>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" onclick="var m=document.getElementById('mobileMenu');var open=m.classList.toggle('open');this.setAttribute('aria-expanded',open);this.innerHTML=open?'<svg width=\'22\' height=\'22\' viewBox=\'0 0 24 24\' fill=\'none\'><path d=\'M6 6l12 12M18 6L6 18\' stroke=\'white\' stroke-width=\'2\' stroke-linecap=\'round\'/></svg>':'<svg width=\'22\' height=\'22\' viewBox=\'0 0 24 24\' fill=\'none\'><path d=\'M3 6h18M3 12h18M3 18h18\' stroke=\'white\' stroke-width=\'2\' stroke-linecap=\'round\'/></svg>';">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#home" class="active" onclick="document.getElementById('mobileMenu').classList.remove('open')">Home</a>
+    <a href="#about" onclick="document.getElementById('mobileMenu').classList.remove('open')">About</a>
+    <a href="#education" onclick="document.getElementById('mobileMenu').classList.remove('open')">Education</a>
+    <a href="#skills" onclick="document.getElementById('mobileMenu').classList.remove('open')">Skills</a>
+    <a href="#projects" onclick="document.getElementById('mobileMenu').classList.remove('open')">Projects</a>
+    <a href="#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
+    <div class="mobile-menu-social">
+      <a href="https://github.com/sohailkhansohail6300-bit" aria-label="GitHub"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.88-2.78.62-3.37-1.22-3.37-1.22-.45-1.17-1.11-1.48-1.11-1.48-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg></a>
+      <a href="#" aria-label="LinkedIn"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4-.02 2 2 0 0 1 4 .02ZM3.3 8.5h3.7V21H3.3V8.5Zm6.6 0h3.55v1.7h.05c.5-.9 1.7-1.86 3.5-1.86 3.75 0 4.44 2.3 4.44 5.3V21h-3.7v-5.6c0-1.34-.02-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95V21H9.9V8.5Z"/></svg></a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Hello, I'm</div>
+      <h1>Muhammad <span>Sohail</span></h1>
+      <div class="role">Full-Stack Django Developer</div>
+      <p class="desc">I build responsive web applications and scalable backend systems using Python and Django, with clean UI, efficient database logic, and modern server-rendered web technologies.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn btn-primary">View My Projects</a>
+        <a href="https://github.com/sohailkhansohail6300-bit" class="btn btn-outline">GitHub Profile</a>
+      </div>
+      <div class="hero-secondary"><a href="#contact">Let's Connect →</a></div>
+      <div class="hero-meta">
+        <div><b>Email:</b> sohailkhansohail629@gmail.com</div>
+        <div><b>Location:</b> Pakistan</div>
+        <a href="https://github.com/sohailkhansohail6300-bit" target="_blank" rel="noopener noreferrer"><div><b>GitHub:</b> github.com/sohailkhansohail6300-bit</div></a>
+      </div>
+    </div>
+    <div class="portrait-wrap">
+      <svg class="portrait-bg" width="100%" height="100%" viewBox="0 0 400 460"><circle cx="330" cy="60" r="90" fill="#F5EDE4"/><rect x="10" y="330" width="120" height="120" rx="20" fill="#F5EDE4"/></svg>
+<div class="portrait-frame">
+  <svg viewBox="0 0 400 460" width="100%" height="100%">
+    <!-- Full-size background image only -->
+    <image href="sohailimage.png" width="400" height="460" preserveAspectRatio="xMidYMid slice" />
+  </svg>
+</div>
+
+
+      <div class="badge">Python • Django • Full Stack</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container about-grid">
+    <div>
+      <div class="eyebrow">About Me</div>
+      <h2 style="margin-bottom:18px;font-size:30px;">Backend-focused, product-minded</h2>
+      <p>I'm a passionate Full-Stack Django Developer focused on building efficient, scalable, and user-friendly web applications. I enjoy turning real-world problems into practical software solutions using clean backend architecture and modern web technologies.</p>
+      <div class="stat-row">
+        <div class="stat">Projects Built</div>
+        <div class="stat">Django Focused</div>
+        <div class="stat">Always Learning</div>
+      </div>
+    </div>
+    <div class="card approach-card">
+      <h3>My Approach</h3>
+      <ul>
+        <li><span class="dot"></span>Clean & maintainable code</li>
+        <li><span class="dot"></span>Responsive user interfaces</li>
+        <li><span class="dot"></span>Efficient database design</li>
+        <li><span class="dot"></span>Scalable Django architecture</li>
+        <li><span class="dot"></span>Continuous learning</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="education" style="background:#fff;">
+  <div class="container">
+    <div class="section-head"><div class="eyebrow">Background</div><h2>Education</h2></div>
+    <div class="grid-3">
+      <div class="card edu-card">
+        <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 8l9-4 9 4-9 4-9-4Zm0 0v6" stroke="#D97757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Matric</h3>
+        <div class="sub">Secondary School Education</div>
+        <div class="sub">Bradford Science College Karak</div>
+        <div class="sub">Grade A+</div>
+        <div class="sub">Percentage: 84%</div>
+        <span class="status done">Completed</span>
+      </div>
+      <div class="card edu-card">
+        <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" stroke="#D97757" stroke-width="2"/></svg></div>
+        <h3>FSC</h3>
+        <div class="sub">Higher Secondary School Education</div>
+        <div class="sub">Bradford Science College Karak</div>
+        <div class="sub">Grade A+</div>
+        <div class="sub">Percentage: 87%</div>
+        <span class="status done">Completed</span>
+      </div>
+      <div class="card edu-card">
+        <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" stroke="#D97757" stroke-width="2"/></svg></div>
+        <h3>Bachelor's</h3>
+        <div class="sub">Computer Science (2026)</div>
+        <div class="sub">Government College of management Sciences Dera Ismail Khan Affiliated with Gomal University dera Ismail khan Kpk</div>
+        <div class="sub">CGPA: 3.41/4.0</div>
+        <span class="status done">Completed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-head"><div class="eyebrow">Capabilities</div><h2>Technical Skills</h2><p>Technologies and tools I work with.</p></div>
+    <div class="skill-cat">
+      <h3>BACKEND</h3>
+      <div class="skill-chips">
+        <div class="chip"><span class="dot2"></span>Python</div>
+        <div class="chip"><span class="dot2"></span>Django</div>
+        <div class="chip"><span class="dot2"></span>Django REST Framework</div>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>FRONTEND</h3>
+      <div class="skill-chips">
+        <div class="chip"><span class="dot2"></span>HTML</div>
+        <div class="chip"><span class="dot2"></span>CSS</div>
+        <div class="chip"><span class="dot2"></span>JavaScript</div>
+        <div class="chip"><span class="dot2"></span>Bootstrap</div>
+        <div class="chip"><span class="dot2"></span>Tailwind CSS</div>
+        <div class="chip"><span class="dot2"></span>HTMX</div>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>TOOLS</h3>
+      <div class="skill-chips">
+        <div class="chip"><span class="dot2"></span>Git</div>
+        <div class="chip"><span class="dot2"></span>GitHub</div>
+      </div>
+    </div>
+    <div class="skill-cat" style="margin-bottom:0;">
+      <h3>SOFT SKILLS</h3>
+      <div class="soft-row">
+        <div class="soft-chip">Problem Solving</div>
+        <div class="soft-chip">Teamwork</div>
+        <div class="soft-chip">Communication</div>
+        <div class="soft-chip">Time Management</div>
+        <div class="soft-chip">Adaptability</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="section-head"><div class="eyebrow">Services</div><h2>What I Build</h2></div>
+    <div class="grid-4">
+      <div class="card build-card">
+        <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="#D97757" stroke-width="2"/><path d="M3 9h18" stroke="#D97757" stroke-width="2"/></svg></div>
+        <h3>Web Applications</h3><p>Django-based responsive web applications.</p>
+      </div>
+      <div class="card build-card">
+        <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h12" stroke="#D97757" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Business Systems</h3><p>POS, inventory and management systems.</p>
+      </div>
+      <div class="card build-card">
+        <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4V4Zm3 4h10M7 12h10M7 16h6" stroke="#D97757" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Content Platforms</h3><p>Blogs, CMS and publishing platforms.</p>
+      </div>
+      <div class="card build-card">
+        <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#D97757" stroke-width="2"/><path d="M12 3v2m0 14v2m9-9h-2M5 12H3m14.5-6.5-1.4 1.4M6.9 17.1l-1.4 1.4m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="#D97757" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Custom Solutions</h3><p>Business-focused web applications tailored to client requirements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="container">
+    <div class="proj-top">
+      <div class="section-head" style="margin-bottom:0;"><div class="eyebrow">Portfolio</div><h2>Featured Projects</h2><p>Selected projects showcasing my Django development experience.</p></div>
+      <a href="https://github.com/sohailkhansohail6300-bit" class="btn btn-outline">View More on GitHub →</a>
+    </div>
+    <div class="grid-2">
+
+      <div class="card proj-card">
+        <div class="proj-shot"><svg width="100%" height="100%" viewBox="0 0 400 170"><rect width="400" height="170" fill="#F5F4EE"/><rect x="24" y="24" width="352" height="35" rx="8" fill="#D97757" opacity=".15"/><rect x="24" y="70" width="170" height="60" rx="8" fill="#F5EDE4"/><rect x="206" y="70" width="170" height="60" rx="8" fill="#F5EDE4"/></svg></div>
+        <div class="proj-body">
+          <h3>Multi Vendors Ecommerce Platform</h3>
+          <p>A comprehensive e-commerce solution allowing multiple vendors to sell their products online.</p>
+          <div class="tech-row"><span class="tech-badge">HTML</span><span class="tech-badge">CSS</span><span class="tech-badge"></span></div>
+          <div class="proj-actions"><a href="" class="view">Project</a><a href="https://github.com/sohailkhansohail6300-bit/Multi_Vendors_Ecommerce_Platform.git" class="gh"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.88-2.78.62-3.37-1.22-3.37-1.22-.45-1.17-1.11-1.48-1.11-1.48-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg></a></div>
+        </div>
+      </div>
+
+      <div class="card proj-card">
+        <div class="proj-shot"><svg width="100%" height="100%" viewBox="0 0 400 170"><rect width="400" height="170" fill="#F5F4EE"/><rect x="24" y="24" width="150" height="14" rx="4" fill="#D97757"/><rect x="24" y="50" width="352" height="80" rx="8" fill="#F5EDE4"/></svg></div>
+        <div class="proj-body">
+          <h3>Fitness Web App</h3>
+          <p>A responsive fitness platform for workout tracking and personalized fitness content.</p>
+          <div class="tech-row"><span class="tech-badge">Python</span><span class="tech-badge">Django</span><span class="tech-badge">Tailwind CSS</span></div>
+          <div class="proj-actions"><a href="" class="view">Project →</a><a href="https://github.com/sohailkhansohail6300-bit/Fitness-web-App.git" class="gh"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.88-2.78.62-3.37-1.22-3.37-1.22-.45-1.17-1.11-1.48-1.11-1.48-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg></a></div>
+        </div>
+      </div>
+
+      <div class="card proj-card">
+        <div class="proj-shot"><svg width="100%" height="100%" viewBox="0 0 400 170"><rect width="400" height="170" fill="#F5F4EE"/><rect x="24" y="24" width="120" height="14" rx="4" fill="#D97757"/><rect x="24" y="50" width="170" height="80" rx="8" fill="#F5EDE4"/><rect x="206" y="50" width="170" height="80" rx="8" fill="#F5EDE4"/></svg></div>
+        <div class="proj-body">
+          <h3>Django Blog / CMS</h3>
+          <p>A clean content management platform for creating, managing and publishing articles.</p>
+          <div class="tech-row"><span class="tech-badge">Python</span><span class="tech-badge">Django</span><span class="tech-badge">Bootstrap</span></div>
+          <div class="proj-actions"><a href="#" class="view"> Project →</a><a href="https://github.com/sohailkhansohail6300-bit/multi-content-django-blog-system.git" class="gh"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.88-2.78.62-3.37-1.22-3.37-1.22-.45-1.17-1.11-1.48-1.11-1.48-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg></a></div>
+        </div>
+      </div>
+
+      <div class="card proj-card">
+        <div class="proj-shot"><svg width="100%" height="100%" viewBox="0 0 400 170"><rect width="400" height="170" fill="#F5F4EE"/><rect x="24" y="24" width="352" height="24" rx="4" fill="#D97757"/><rect x="24" y="60" width="110" height="70" rx="8" fill="#F5EDE4"/><rect x="145" y="60" width="110" height="70" rx="8" fill="#F5EDE4"/><rect x="266" y="60" width="110" height="70" rx="8" fill="#F5EDE4"/></svg></div>
+        <div class="proj-body">
+          <h3>POS & Inventory Management System</h3>
+          <p>A business management system for sales, inventory, products and order management.</p>
+          <div class="tech-row"><span class="tech-badge">Python</span><span class="tech-badge">Django</span><span class="tech-badge">Bootstrap</span></div>
+          <div class="proj-actions"><a href="#" class="view"> Project →</a><a href="https://github.com/sohailkhansohail6300-bit/POS-inventory-managment-sysytem.git" class="gh"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.88-2.78.62-3.37-1.22-3.37-1.22-.45-1.17-1.11-1.48-1.11-1.48-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg></a></div>
+        </div>
+      </div>
+
+      
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact" >
+  <div class="contact" style="background-color: #43637E;">
+    <h2>Let's Build Something Together</h2>
+    <p>Have a project idea or looking for a Django developer? Let's connect and discuss how I can help.</p>
+    <div class="contact-cards">
+      <div class="contact-card"><div class="label">Email</div><div class="val">sohailkhan6300@gmail.com</div></div>
+      <div class="contact-card"><div class="label">GitHub</div><a href="https://github.com/sohailkhansohail6300-bit" target="_blank" class="val">github.com/sohailkhansohail6300-bit</a></div>
+      <div class="contact-card"><a href="https://www.linkedin.com/in/mohammad-sohail-5a73463a2?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><div class="label">LinkedIn</div><div class="val">Connect on LinkedIn</div></a></div>
+    </div>
+    <a href="mailto:sohailkhan6300@gmail.com" class="btn btn-primary">Get In Touch</a>
+  </div>
+</section>
+
+<footer style="background-color: #43637E;">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <div class="brand"><div class="brand-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 6L3 12L8 18M16 6L21 12L16 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Muhammad Sohail</div>
+      <div class="role">Full-Stack Django Developer</div>
+      <p>Building practical web solutions with Python and Django.</p>
+      <div class="footer-social">
+        <a href="https://github.com/sohailkhansohail6300-bit" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.88-2.78.62-3.37-1.22-3.37-1.22-.45-1.17-1.11-1.48-1.11-1.48-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg></a>
+        <a href="https://www.linkedin.com/in/mohammad-sohail-5a73463a2?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4-.02 2 2 0 0 1 4 .02ZM3.3 8.5h3.7V21H3.3V8.5Zm6.6 0h3.55v1.7h.05c.5-.9 1.7-1.86 3.5-1.86 3.75 0 4.44 2.3 4.44 5.3V21h-3.7v-5.6c0-1.34-.02-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95V21H9.9V8.5Z"/></svg></a>
+        <a href="mailto:sohailkhansohail629@gmail.com" aria-label="Email"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>&nbsp;</h4>
+      <span class="tagline">Build • Learn • Grow</span>
+    </div>
+  </div>
+  <div class="container divider">
+    <span>© 2026 Muhammad Sohail. All rights reserved.</span>
+    <span>Designed & built with Django in mind.</span>
+  </div>
+</footer>
+
+</body>
+</html>
