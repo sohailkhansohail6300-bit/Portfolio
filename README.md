@@ -106,45 +106,10 @@ Contact information and links to my GitHub and LinkedIn profiles.
 
 ---
 
-## Screenshots
-
-### Home
-
-<img width="1355" height="647" alt="image" src="https://github.com/user-attachments/assets/32481c86-7434-4db1-a403-8367be4ab649" />
-
-
-### About
-
-<img width="1306" height="476" alt="image" src="https://github.com/user-attachments/assets/48b393b3-628c-46bc-bb0a-4e19f283e135" />
-
-
-### Education
-
-<img width="1320" height="566" alt="image" src="https://github.com/user-attachments/assets/0b2d9f7b-7867-451a-b23d-74ff6aaa8bc6" />
-
-
-### Technical Skills
-
-<img width="913" height="640" alt="image" src="https://github.com/user-attachments/assets/3c027015-a4df-4e1d-8395-503b131a18b5" />
-
-
-### Projects
-<img width="1317" height="623" alt="image" src="https://github.com/user-attachments/assets/3216dd5f-1a8e-47e5-84d7-aab1c9fd2894" />
 
 
 
 
-```text
-screenshots/
-├── home.png
-├── about.png
-├── education.png
-├── skills.png
-├── projects.png
-└── contact.png
-```
-
-Update the filenames in the README if your actual screenshot filenames are different.
 
 ---
 
